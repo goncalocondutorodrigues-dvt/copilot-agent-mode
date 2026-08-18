@@ -28,10 +28,26 @@ export function getBaseApiUrl(): string {
 
 /**
  * Get the full URL for an API endpoint
- * @param endpoint - The endpoint path (e.g., '/api/activities/', '/api/leaderboard/')
+ * @param endpoint - The endpoint path (e.g., '-8000.app.github.dev/api/activities', '/api/leaderboard/')
  * @returns Full API URL
  */
 export function getApiEndpoint(endpoint: string): string {
+  if (endpoint.startsWith('-8000.app.github.dev/')) {
+    const codespaceName = import.meta.env.VITE_CODESPACE_NAME;
+
+    if (codespaceName) {
+      return `https://${codespaceName}${endpoint}`;
+    }
+
+    const apiPath = endpoint.replace('-8000.app.github.dev', '');
+    const normalizedApiPath = apiPath.startsWith('/') ? apiPath : `/${apiPath}`;
+    return `http://localhost:8000${normalizedApiPath}`;
+  }
+
+  if (endpoint.startsWith('http://') || endpoint.startsWith('https://')) {
+    return endpoint;
+  }
+
   const normalizedEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
   return `${getBaseApiUrl()}${normalizedEndpoint}`;
 }

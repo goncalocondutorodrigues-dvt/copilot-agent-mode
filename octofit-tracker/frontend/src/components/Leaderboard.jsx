@@ -10,7 +10,7 @@ export default function Leaderboard() {
     const loadLeaderboard = async () => {
       try {
         setLoading(true);
-        const data = await fetchApiData('/api/leaderboard/');
+        const data = await fetchApiData('-8000.app.github.dev/api/leaderboard');
         setEntries(data);
         setError(null);
       } catch (err) {

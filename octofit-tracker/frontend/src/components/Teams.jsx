@@ -10,7 +10,7 @@ export default function Teams() {
     const loadTeams = async () => {
       try {
         setLoading(true);
-        const data = await fetchApiData('/api/teams/');
+        const data = await fetchApiData('-8000.app.github.dev/api/teams');
         setTeams(data);
         setError(null);
       } catch (err) {

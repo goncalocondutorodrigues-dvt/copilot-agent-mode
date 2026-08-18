@@ -10,7 +10,7 @@ export default function Users() {
     const loadUsers = async () => {
       try {
         setLoading(true);
-        const data = await fetchApiData('/api/users/');
+        const data = await fetchApiData('-8000.app.github.dev/api/users');
         setUsers(data);
         setError(null);
       } catch (err) {

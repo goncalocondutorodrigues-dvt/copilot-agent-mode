@@ -10,7 +10,7 @@ export default function Activities() {
     const loadActivities = async () => {
       try {
         setLoading(true);
-        const data = await fetchApiData('/api/activities/');
+        const data = await fetchApiData('-8000.app.github.dev/api/activities');
         setActivities(data);
         setError(null);
       } catch (err) {
