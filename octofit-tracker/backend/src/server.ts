@@ -7,11 +7,10 @@ import leaderboardRouter from './routes/leaderboard.routes';
 import workoutsRouter from './routes/workouts.routes';
 
 const app = express();
-const PORT = 8000;
 const codespaceName = process.env.CODESPACE_NAME;
 const apiBaseUrl = codespaceName
-  ? `https://${codespaceName}-${PORT}.app.github.dev`
-  : `http://localhost:${PORT}`;
+  ? `https://${codespaceName}-8000.app.github.dev`
+  : `http://localhost:8000`;
 
 // Middleware
 app.use(express.json());
@@ -32,7 +31,7 @@ app.get('/api/health', (_req, res) => {
 async function startServer(): Promise<void> {
   try {
     await connectDatabase();
-    app.listen(PORT, () => {
+    app.listen(8000, () => {
       console.log(`Backend server is running on ${apiBaseUrl}`);
     });
   } catch (error) {
