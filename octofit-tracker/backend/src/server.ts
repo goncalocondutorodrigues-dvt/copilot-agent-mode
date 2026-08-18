@@ -5,11 +5,13 @@ import teamsRouter from './routes/teams.routes';
 import activitiesRouter from './routes/activities.routes';
 import leaderboardRouter from './routes/leaderboard.routes';
 import workoutsRouter from './routes/workouts.routes';
-import { getApiBaseUrl } from './utils/baseUrl';
 
 const app = express();
 const PORT = 8000;
-const apiBaseUrl = getApiBaseUrl();
+const codespaceName = process.env.CODESPACE_NAME;
+const apiBaseUrl = codespaceName
+  ? `https://${codespaceName}-${PORT}.app.github.dev`
+  : `http://localhost:${PORT}`;
 
 // Middleware
 app.use(express.json());
